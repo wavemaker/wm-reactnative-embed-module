@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@wavemaker/expo-native-module": ["../src/index"],
+      "@wavemaker/expo-native-module/*": ["../src/*"]
+    }
+  }
+}

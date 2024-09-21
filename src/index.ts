@@ -1,4 +1,4 @@
-import { NativeModulesProxy, EventEmitter, Subscription } from 'expo-modules-core';
+import { NativeModulesProxy, EventEmitter, Subscription, requireNativeModule } from 'expo-modules-core';
 
 // Import the native module. On web, it will be resolved to EmbedCommModule.web.ts
 // and on native platforms to EmbedCommModule.ts
@@ -14,7 +14,8 @@ export function hello(): string {
 }
 
 export async function setValueAsync(value: string) {
-  return await EmbedCommModule.setValueAsync(value);
+  const EmbedCommModule = await requireNativeModule('EmbedCommModule');
+  return EmbedCommModule && await EmbedCommModule.setValueAsync(value);
 }
 
 const emitter = new EventEmitter(EmbedCommModule ?? NativeModulesProxy.EmbedCommModule);
